@@ -1,8 +1,6 @@
 # Introduction 👋
 This project is a React Native Expo app integrated with Dfinity's Internet Identity (II) and NFID for authentication. Since native support for these identity providers is unavailable in React Native, a frontend canister handles the authentication flow. The app uses InAppBrowser to initiate the login process, and the verified identity is passed back to the app from the frontend canister.
 
-This is an 
-
 ## Get started
 
 1. Install dependencies
@@ -22,6 +20,7 @@ This is an
       ios-> "expo run:ios"
    ```
 ## Next Steps
+
 Once a user is authorized, you can now create an actor using the sample code below:
    ```bash
    import { createActor } from "../declarations/canister"; // Adjust the path as needed
