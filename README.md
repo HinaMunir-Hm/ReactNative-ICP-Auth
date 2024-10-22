@@ -1,5 +1,6 @@
 ## Repo URL
-https://github.com/HinaMunir-Hm/react-native-expo-icp-dfinity-auth
+[a relative link](https://github.com/HinaMunir-Hm/react-native-expo-icp-dfinity-auth)
+
 # Introduction 👋
 This project is a React Native Expo app integrated with Dfinity's Internet Identity (II) and NFID for authentication. Since native support for these identity providers is unavailable in React Native, a frontend canister handles the authentication flow. The app uses InAppBrowser to initiate the login process, and the verified identity is passed back to the app from the frontend canister.
 
