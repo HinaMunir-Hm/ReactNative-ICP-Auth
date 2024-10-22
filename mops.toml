@@ -1,0 +1,4 @@
+[dependencies]
+base = "0.11.2"
+stable-rbtree = "1.0.0"
+uuid = "1.0.0"
