@@ -1,6 +1,7 @@
-# Welcome to your Expo app 👋
+# Introduction 👋
+This project is a React Native Expo app integrated with Dfinity's Internet Identity (II) and NFID for authentication. Since native support for these identity providers is unavailable in React Native, a frontend canister handles the authentication flow. The app uses InAppBrowser to initiate the login process, and the verified identity is passed back to the app from the frontend canister.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is an 
 
 ## Get started
 
@@ -10,41 +11,38 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npm install
    ```
 
-2. Start the app
+2. Run frontend canister on playground in a separate terminal
 
    ```bash
-    npx expo start
+    npm run deployCanisters
    ```
+3. Build the app 
+   ```bash
+       android -> "expo run:android"
+      ios-> "expo run:ios"
+   ```
+## Next Steps
+Once a user is authorized, you can now create an actor using the sample code below:
+   ```bash
+   import { createActor } from "../declarations/canister"; // Adjust the path as needed
+   const { identity } = useAuth();
+   
+   const userActor = createActor(canisterID, {
+     agentOptions: {
+       identity: identity,  // Use the user's authenticated identity
+       host: "https://icp0.io",
+     },
+     callOptions: {
+       reactNative: {
+         textStreaming: true,  // Enable text streaming for better performance
+       },
+     },
+     fetchOptions: {
+       reactNative: {
+         __nativeResponseType: "base64",  // Handle native responses in base64 encoding
+       },
+     },
+   });
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+   ```
+ For above code sample, make sure to import createActor from the canister's generated declarations.
